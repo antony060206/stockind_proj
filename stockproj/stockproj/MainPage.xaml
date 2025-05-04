@@ -8,7 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" Loaded="Page_Loaded">
 
-    <NavigationView x:Name="nav" IsSettingsVisible="True" ItemInvoked="NavigationView_ItemInvoked" BackRequested="nav_BackRequested">
+    <NavigationView x:Name="nav" IsSettingsVisible="False" ItemInvoked="NavigationView_ItemInvoked" BackRequested="nav_BackRequested">
         <NavigationView.MenuItems>
             <NavigationViewItem Content="Home" Icon="Home" Tag="home" />
             <NavigationViewItem Content="StockList" Icon="Page" Tag="stocklist" />

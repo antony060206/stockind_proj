@@ -4,6 +4,14 @@
 #include "MainPage.g.cpp"
 #endif
 #include "winrt/Windows.UI.Xaml.Interop.h"
+//#include <cpprest/http_client.h>//inlucde header in project/tools as wella as exclude errors
+//#include <cpprest/json.h>  // for parsing JSON
+//using namespace web;
+//using namespace web::http;
+//using namespace web::http::client;
+
+#include "curl/curl.h"
+
 
 using namespace winrt;
 using namespace Microsoft::UI::Xaml;
