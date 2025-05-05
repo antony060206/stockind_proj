@@ -15,7 +15,7 @@
         </NavigationView.MenuItems>
         
         <NavigationView.Content>
-            <Frame x:Name="mainFrame" Navigated="mainFrame_Navigated" />
+            <Frame x:Name="mainFrame" Navigated="mainFrame_Navigated"/>
         </NavigationView.Content>
     </NavigationView>
 </Page>

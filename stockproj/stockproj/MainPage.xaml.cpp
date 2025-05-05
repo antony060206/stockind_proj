@@ -4,6 +4,7 @@
 #include "MainPage.g.cpp"
 #endif
 #include "winrt/Windows.UI.Xaml.Interop.h"
+
 //#include <cpprest/http_client.h>//inlucde header in project/tools as wella as exclude errors
 //#include <cpprest/json.h>  // for parsing JSON
 //using namespace web;
@@ -11,18 +12,18 @@
 //using namespace web::http::client;
 
 #include "curl/curl.h"
-
+#include <string>
+#include "NavigationService.h"
 
 using namespace winrt;
 using namespace Microsoft::UI::Xaml;
 
-// To learn more about WinUI, the WinUI project structure,
-// and more about our project templates, see: http://aka.ms/winui-project-info.
-
 namespace winrt::stockproj::implementation
 {
-	void MainPage::Page_Loaded(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::IRoutedEventArgs const& e) {
-		//initialize
+	
+	void MainPage::Page_Loaded(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::IRoutedEventArgs const& e)
+	{
+		NavigationService::Initialize(mainFrame());
 	}
 
 	//Navigates through the pages in the menu screen using the windows ui NavigationView
@@ -43,22 +44,22 @@ namespace winrt::stockproj::implementation
 			}
 		}
 	}
-
+	//use main frame to open the HomePage
 	void MainPage::openHomePage()
 	{
 		mainFrame().Navigate(xaml_typename<winrt::stockproj::HomePage>());
 	}
-
+	//use main frame to open the Stocklist page
 	void MainPage::openStockPage() {
 		mainFrame().Navigate(xaml_typename<winrt::stockproj::StockList>());
 
 	}
-
+	//Enables teh Back button in the NaviatioView only when there's a page to go back
 	void MainPage::mainFrame_Navigated(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::Navigation::NavigationEventArgs const& e)
 	{
 		nav().IsBackEnabled(mainFrame().CanGoBack());
 	}
-
+	//sends back to the previous page
 	void MainPage::nav_BackRequested(winrt::Microsoft::UI::Xaml::Controls::NavigationView const& sender, winrt::Microsoft::UI::Xaml::Controls::NavigationViewBackRequestedEventArgs const& args)
 	{
 		mainFrame().GoBack();
