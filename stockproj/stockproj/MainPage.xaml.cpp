@@ -11,7 +11,6 @@
 //using namespace web::http;
 //using namespace web::http::client;
 
-#include "curl/curl.h"
 #include <string>
 #include "NavigationService.h"
 

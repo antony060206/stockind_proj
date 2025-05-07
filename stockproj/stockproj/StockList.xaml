@@ -9,6 +9,6 @@
     mc:Ignorable="d">
 
     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <TextBlock Text="StockList"/>
+        <TextBlock x:Name="stocklistresult" Text="StockList" FontSize="16" HorizontalAlignment="Center"/>
     </StackPanel>
 </Page>
