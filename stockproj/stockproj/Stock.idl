@@ -1,0 +1,9 @@
+namespace stockproj
+{
+    [default_interface]
+    runtimeclass Stock : Microsoft.UI.Xaml.Controls.Page
+    {
+        Stock();
+        
+    }
+}

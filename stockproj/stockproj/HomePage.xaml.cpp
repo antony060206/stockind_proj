@@ -9,6 +9,7 @@
 #include "NavigationService.h"
 #include "winrt/Windows.UI.Xaml.Interop.h"
 #include "StockList.xaml.h"
+#include "Stock.xaml.h"
 
 
 using namespace winrt;
@@ -18,7 +19,7 @@ using namespace Microsoft::UI::Xaml;
 namespace winrt::stockproj::implementation
 {
 	void HomePage::search(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e){
+		Stock::fetch_stock_quote(to_string(ticker().Text()));
 		NavigationService::Navigate(xaml_typename<winrt::stockproj::StockList>());
-		StockList::fetch_stock_quote(to_string(ticker().Text()));
 	}
 }

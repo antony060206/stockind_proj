@@ -1,7 +1,7 @@
 #pragma once
 
 #include "StockList.g.h"
-#include <iostream>
+using namespace winrt::Windows::Foundation::Collections;
 
 namespace winrt::stockproj::implementation
 {
@@ -13,9 +13,11 @@ namespace winrt::stockproj::implementation
             // See https://github.com/microsoft/cppwinrt/tree/master/nuget#initializecomponent
         }
 
-        static size_t WriteCallback(void* contents, size_t size, size_t nmemb, std::string* output);
+        winrt::Windows::Foundation::Collections::IVector<winrt::stockproj::Stock> m_items;
 
-        static void fetch_stock_quote(const std::string& ticker);
+        static void buildlist();
+        static void appendlist();
+        static IVector<winrt::stockproj::Stock> getlist();
 
     };
 }

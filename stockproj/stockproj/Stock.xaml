@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Page
-    x:Class="stockproj.StockList"
+    x:Class="stockproj.Stock"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:stockproj"
@@ -8,11 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <ListView ItemsSource ="" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <ListView.ItemTemplate>
-            <DataTemplate x:DataType="local:Stock">
-                <TextBlock Text="{x:Bind Name}"/>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
+    <Grid>
+
+    </Grid>
 </Page>

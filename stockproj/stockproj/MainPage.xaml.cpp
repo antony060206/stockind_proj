@@ -23,6 +23,7 @@ namespace winrt::stockproj::implementation
 	void MainPage::Page_Loaded(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::IRoutedEventArgs const& e)
 	{
 		NavigationService::Initialize(mainFrame());
+		NavigationService::Navigate(xaml_typename<winrt::stockproj::HomePage>());
 	}
 
 	//Navigates through the pages in the menu screen using the windows ui NavigationView
