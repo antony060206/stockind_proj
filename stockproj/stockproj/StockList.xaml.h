@@ -1,23 +1,31 @@
 #pragma once
 
 #include "StockList.g.h"
+#include "globallist.h"
 using namespace winrt::Windows::Foundation::Collections;
-
+using namespace std;
 namespace winrt::stockproj::implementation
 {
     struct StockList : StockListT<StockList>
     {
-        StockList()
-        {
-            // Xaml objects should not call InitializeComponent during construction.
-            // See https://github.com/microsoft/cppwinrt/tree/master/nuget#initializecomponent
-        }
-
         winrt::Windows::Foundation::Collections::IVector<winrt::stockproj::Stock> m_items;
 
-        static void buildlist();
-        static void appendlist();
-        static IVector<winrt::stockproj::Stock> getlist();
+        StockList() {
+            globallist::g_stockList = *this;
+            m_items = winrt::single_threaded_observable_vector<winrt::stockproj::Stock>();
+            this->DataContext(*this);
+        }
+
+
+        winrt::Windows::Foundation::Collections::IVector<winrt::stockproj::Stock> StockItems();//getter
+
+        void StockItems(winrt::Windows::Foundation::Collections::IVector<winrt::stockproj::Stock> const& value);//setter
+
+        void buildlist();
+
+        void appendlist(winrt::stockproj::Stock const& stock);
+        
+       
 
     };
 }

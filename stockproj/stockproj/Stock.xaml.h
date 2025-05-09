@@ -11,13 +11,24 @@ namespace winrt::stockproj::implementation
             m_ticker{ ticker }, m_time{ time }, m_high{ high }, m_low{ low }, m_close{ close }, m_open{ open } {}        
 
 
-        //create getters
+        //create getters/setters
         hstring Ticker() const { return m_ticker; }
+        void Ticker(hstring const& val) { m_ticker = val; }
+
         hstring Time() const { return m_time; }
-        hstring High() const { return m_high; }
-        hstring Low() const { return m_low; }
-        hstring Close() const { return m_close; }
+        void Time(hstring const& val) { m_time = val; }
+
         hstring Open() const { return m_open; }
+        void Open(hstring const& val) { m_open = val; }
+
+        hstring High() const { return m_high; }
+        void High(hstring const& val) { m_high = val; }
+
+        hstring Low() const { return m_low; }
+        void Low(hstring const& val) { m_low = val; }
+
+        hstring Close() const { return m_close; }
+        void Close(hstring const& val) { m_close = val; }
 
         static size_t WriteCallback(void* contents, size_t size, size_t nmemb, std::string* output);
         static void fetch_stock_quote(const std::string& ticker);

@@ -27,17 +27,23 @@ using namespace std;
 namespace winrt::stockproj::implementation
 {		
 	
-	void StockList::buildlist() {
+	/*void StockList::buildlist() {
 		m_items = winrt::single_threaded_observable_vector<winrt::stockproj::Stock>();
-	}
+	}*/
 
-	void StockList::appendlist()
+	void StockList::appendlist(winrt::stockproj::Stock const& stock)
 	{
-		m_items.Append(winrt::stockproj::Stock{});
+		m_items.Append(stock);	
 	}
 
-	IVector<winrt::stockproj::Stock> StockList::getlist(){
+	winrt::Windows::Foundation::Collections::IVector<winrt::stockproj::Stock> StockList::StockItems()//getter
+	{
 		return m_items;
+	}
+
+	void StockList::StockItems(winrt::Windows::Foundation::Collections::IVector<winrt::stockproj::Stock> const& value)//not used setter
+	{
+		m_items = value;
 	}
 
 }

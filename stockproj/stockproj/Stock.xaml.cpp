@@ -4,6 +4,7 @@
 #include "Stock.g.cpp"
 #endif
 
+//#include "globallist.h"
 #include "curl/curl.h"
 #include "StockList.xaml.h"
 #include <winrt/Windows.UI.Input.h>
@@ -12,6 +13,8 @@
 #include "winrt/Windows.UI.Xaml.Interop.h"
 #include <string>
 #include <nlohmann/json.hpp>  // Include this after installing
+using namespace globallist;
+
 
 using json = nlohmann::json;
 
@@ -24,11 +27,11 @@ using namespace std;
 
 namespace winrt::stockproj::implementation
 {
-    wstring OutputJsonField(const std::string& label, const std::string& value) { //converts json to wstring
+    hstring OutputJsonField(const std::string& label, const std::string& value) { //converts json to wstring
         std::wstring wlabel(label.begin(), label.end());
         std::wstring wvalue(value.begin(), value.end());
         std::wstring message = wlabel + L": " + wvalue + L"\n";
-        return message;
+        return winrt::hstring{ message };
     }
 
     size_t Stock::WriteCallback(void* contents, size_t size, size_t nmemb, std::string* output)
@@ -54,32 +57,28 @@ namespace winrt::stockproj::implementation
             
 
             if (res == CURLE_OK) {
-                wstring ticker;
-                wstring time;
-                wstring open;
-                wstring high;
-                wstring low;
-                wstring close;
 
                 try {
-                    StockList::buildlist;//creates the list
+                    if (g_stockList == nullptr) return; // creates the list and the consructor builds it
+                    winrt::stockproj::Stock stock; // creates the list
+                    //list.buildlist();
 
                     auto j = json::parse(readBuffer);
-                    //OutputDebugStringW(L"My output string.");//test with output tommorrow
-                     ticker = OutputJsonField("Ticker:", j["meta"]["symbol"].get<std::string>());
+                   
 
                     auto values = j["values"];
                     for (const auto& entry : values) {
-                         time = OutputJsonField("Time:", entry["datetime"].get<std::string>());
-                         open = OutputJsonField("Open:", entry["open"].get<std::string>());
-                         high = OutputJsonField("High:", entry["high"].get<std::string>());
-                         low = OutputJsonField("Low:", entry["low"].get<std::string>());
-                         close = OutputJsonField("Close:", entry["close"].get<std::string>());
-                         StockList::
+                         stock.Ticker(OutputJsonField("Ticker:", j["meta"]["symbol"].get<std::string>()));
+                         stock.Time(OutputJsonField("Time:", entry["datetime"].get<std::string>()));
+                         stock.Open(OutputJsonField("Open:", entry["open"].get<std::string>()));
+                         stock.High(OutputJsonField("High:", entry["high"].get<std::string>()));
+                         stock.Low(OutputJsonField("Low:", entry["low"].get<std::string>()));
+                         stock.Close(OutputJsonField("Close:", entry["close"].get<std::string>()));
+
+                         g_stockList.appendlist(stock);
                     }
 
-                    StockList::buildlist;
-
+                    OutputDebugStringW(L"My output string.");//test with output tommorrow
 
                 }
                 catch (const std::exception& e) {

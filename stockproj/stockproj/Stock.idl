@@ -1,9 +1,15 @@
 namespace stockproj
 {
+
     [default_interface]
     runtimeclass Stock : Microsoft.UI.Xaml.Controls.Page
     {
         Stock();
-        
+        String Ticker;
+        String Time;
+        String Open;
+        String High;
+        String Low;
+        String Close;
     }
 }

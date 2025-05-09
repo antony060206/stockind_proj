@@ -1,8 +1,20 @@
 namespace stockproj
 {
+    runtimeclass Stock
+    {
+        String Ticker;
+        String Time;
+        String Open;
+        String High;
+        String Low;
+        String Close;
+    }
     [default_interface]
     runtimeclass StockList : Microsoft.UI.Xaml.Controls.Page
     {
         StockList();
+        //void buildlist(); not needed for now
+        void appendlist(Stock stock);
+        Windows.Foundation.Collections.IVector<Stock> StockItems{ get; };
     }
 }

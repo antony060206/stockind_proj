@@ -19,7 +19,11 @@ using namespace Microsoft::UI::Xaml;
 namespace winrt::stockproj::implementation
 {
 	void HomePage::search(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e){
-		Stock::fetch_stock_quote(to_string(ticker().Text()));
 		NavigationService::Navigate(xaml_typename<winrt::stockproj::StockList>());
+		DispatcherQueue().TryEnqueue([this] {
+			auto tickerStr = to_string(ticker().Text());
+			Stock::fetch_stock_quote(tickerStr);
+			});
+
 	}
 }

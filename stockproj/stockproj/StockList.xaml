@@ -8,11 +8,21 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <ListView ItemsSource ="" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <ListView.ItemTemplate>
-            <DataTemplate x:DataType="local:Stock">
-                <TextBlock Text="{x:Bind Name}"/>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
+    <Grid>
+        <ListView x:Name="StockListView"
+          ItemsSource="{x:Bind StockItems, Mode=OneWay}">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="local:Stock">
+                    <StackPanel>
+                        <TextBlock Text="{x:Bind Ticker}" FontWeight="Bold"/>
+                        <TextBlock Text="{x:Bind Time}" />
+                        <TextBlock Text="{x:Bind Open}" />
+                        <TextBlock Text="{x:Bind High}" />
+                        <TextBlock Text="{x:Bind Low}" />
+                        <TextBlock Text="{x:Bind Close}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
 </Page>
