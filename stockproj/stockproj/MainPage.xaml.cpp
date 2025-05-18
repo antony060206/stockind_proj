@@ -23,6 +23,7 @@ namespace winrt::stockproj::implementation
 	void MainPage::Page_Loaded(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::IRoutedEventArgs const& e)
 	{
 		NavigationService::Initialize(mainFrame());
+		InitializeComponent();
 		NavigationService::Navigate(xaml_typename<winrt::stockproj::HomePage>());
 	}
 
@@ -42,7 +43,15 @@ namespace winrt::stockproj::implementation
 			else if (tag == L"home") {
 				openHomePage();
 			}
+			else if (tag == L"indicator") {
+				openIndicatorPage();
+			}
 		}
+	}
+	//use main frame to open the Indicator page
+	void MainPage::openIndicatorPage()
+	{
+		mainFrame().Navigate(xaml_typename<winrt::stockproj::Indicator>());
 	}
 	//use main frame to open the HomePage
 	void MainPage::openHomePage()

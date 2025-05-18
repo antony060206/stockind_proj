@@ -116,6 +116,15 @@
       <DependentUpon>HomePage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClInclude>
+    <ClInclude Include="Indicator.xaml.h">
+      <DependentUpon>Indicator.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
+    <ClInclude Include="Macd.xaml.h">
+      <DependentUpon>Macd.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
+    <ClInclude Include="macdlist.h" />
     <ClInclude Include="MainPage.xaml.h">
       <DependentUpon>MainPage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -128,6 +137,11 @@
     <ClInclude Include="MainWindow.xaml.h">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </ClInclude>
+    <ClInclude Include="Rsi.xaml.h">
+      <DependentUpon>Rsi.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
+    <ClInclude Include="rsilist.h" />
     <ClInclude Include="Stock.xaml.h">
       <DependentUpon>Stock.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -142,10 +156,19 @@
     <Page Include="HomePage.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Indicator.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Macd.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MainPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Include="MainWindow.xaml" />
+    <Page Include="Rsi.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Stock.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -154,8 +177,17 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="globalindicator.cpp" />
     <ClCompile Include="HomePage.xaml.cpp">
       <DependentUpon>HomePage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
+    <ClCompile Include="Indicator.xaml.cpp">
+      <DependentUpon>Indicator.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
+    <ClCompile Include="Macd.xaml.cpp">
+      <DependentUpon>Macd.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClCompile>
     <ClCompile Include="MainPage.xaml.cpp">
@@ -172,6 +204,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </ClCompile>
     <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
+    <ClCompile Include="Rsi.xaml.cpp">
+      <DependentUpon>Rsi.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
     <ClCompile Include="Stock.xaml.cpp">
       <DependentUpon>Stock.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -186,6 +222,14 @@
       <DependentUpon>HomePage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Midl>
+    <Midl Include="Indicator.idl">
+      <DependentUpon>Indicator.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Midl>
+    <Midl Include="Macd.idl">
+      <DependentUpon>Macd.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Midl>
     <Midl Include="MainPage.idl">
       <DependentUpon>MainPage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -193,6 +237,10 @@
     <Midl Include="MainWindow.idl">
       <SubType>Code</SubType>
       <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Midl>
+    <Midl Include="Rsi.idl">
+      <DependentUpon>Rsi.xaml</DependentUpon>
+      <SubType>Code</SubType>
     </Midl>
     <Midl Include="Stock.idl">
       <DependentUpon>Stock.xaml</DependentUpon>

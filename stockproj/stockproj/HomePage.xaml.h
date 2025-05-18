@@ -13,6 +13,8 @@ namespace winrt::stockproj::implementation
         }
         void search(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e);
 
+        void indicator_search(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e);
+
     };
 }
 

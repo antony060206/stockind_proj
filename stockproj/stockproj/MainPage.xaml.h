@@ -9,6 +9,7 @@ namespace winrt::stockproj::implementation
     private:
         void openStockPage();
         void openHomePage();
+        void openIndicatorPage();
     public:
         MainPage()
         {

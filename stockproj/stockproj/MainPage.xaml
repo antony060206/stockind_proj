@@ -12,6 +12,7 @@
         <NavigationView.MenuItems>
             <NavigationViewItem Content="Home" Icon="Home" Tag="home" />
             <NavigationViewItem Content="StockList" Icon="Page" Tag="stocklist" />
+            <NavigationViewItem Content="Indicator" Icon="Page" Tag="indicator" />
         </NavigationView.MenuItems>
         
         <NavigationView.Content>

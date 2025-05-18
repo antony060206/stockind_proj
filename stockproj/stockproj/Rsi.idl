@@ -1,0 +1,11 @@
+namespace stockproj
+{
+    [default_interface]
+    runtimeclass Rsi : Microsoft.UI.Xaml.Controls.Page
+    {
+        Rsi();
+        String RSI_Ticker;
+        String RSI_Date;
+        String RSI_Value;
+    }
+}

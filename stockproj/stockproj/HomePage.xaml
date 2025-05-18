@@ -9,10 +9,22 @@
     mc:Ignorable="d">
 
     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <TextBox x:Name="ticker"  Width="150" HorizontalAlignment="Center"/>
+        <StackPanel>
+            <TextBlock Text="Ticker:"  Margin="0,5,10,0"  HorizontalAlignment="Center"/>
+            <TextBlock Text="interval: (Default 1 day)" Margin="0,15,10,0" HorizontalAlignment="Center"/>
+            <TextBlock Text="Output size: (Default 5)" Margin="0,15,10,0" HorizontalAlignment="Center"/>
+        </StackPanel>
 
         <StackPanel>
-            <Button Content="Search" Margin="5,0,0,0" HorizontalAlignment="Center" Click="search"/>
+            <TextBox x:Name="ticker"  Width="150" HorizontalAlignment="Center"/>
+            <TextBox x:Name="Interval"  Width="150" HorizontalAlignment="Center"/>
+            <TextBox x:Name="Output"  Width="150" HorizontalAlignment="Center"/>
+        </StackPanel>
+        
+
+        <StackPanel>
+            <Button Content="Search" Margin="10,0,0,0" HorizontalAlignment="Center" Click="search"/>
+            <Button Content="Indicators" Margin="10,0,0,0" HorizontalAlignment="Center" Click="indicator_search"/>
         </StackPanel>
 
 

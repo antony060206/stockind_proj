@@ -1,0 +1,29 @@
+namespace stockproj
+{
+    runtimeclass Rsi
+    {
+        Rsi();
+        String RSI_Ticker;
+        String RSI_Date;
+        String RSI_Value;
+    }
+    runtimeclass Macd
+    {
+       Macd();
+        String MACD_Ticker;
+        String MACD_Date;
+        String MACD_Value;
+    }
+    [default_interface]
+    runtimeclass Indicator : Microsoft.UI.Xaml.Controls.Page
+    {
+
+        Indicator();
+        void rsiappendlist(Rsi rsi);
+        void macdappendlist(Macd macd);
+        Windows.Foundation.Collections.IVector<Rsi> RsiItems { get; };
+        Windows.Foundation.Collections.IVector<Macd> MacdItems { get; };
+
+       
+    }
+}

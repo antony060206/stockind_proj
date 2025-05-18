@@ -1,0 +1,11 @@
+namespace stockproj
+{
+    [default_interface]
+    runtimeclass Macd : Microsoft.UI.Xaml.Controls.Page
+    {
+        Macd();
+        String MACD_Ticker;
+        String MACD_Date;
+        String MACD_Value;
+    }
+}

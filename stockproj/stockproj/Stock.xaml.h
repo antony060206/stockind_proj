@@ -2,13 +2,14 @@
 
 #include "Stock.g.h"
 #include <iostream>
+using namespace std;
 namespace winrt::stockproj::implementation
 {
     struct Stock : StockT<Stock>
     {
         Stock() = default;
-        Stock(hstring ticker, hstring time, hstring high, hstring low, hstring close, hstring open) :
-            m_ticker{ ticker }, m_time{ time }, m_high{ high }, m_low{ low }, m_close{ close }, m_open{ open } {}        
+        /*Stock(hstring ticker, hstring time, hstring high, hstring low, hstring close, hstring open) :
+            m_ticker{ ticker }, m_time{ time }, m_high{ high }, m_low{ low }, m_close{ close }, m_open{ open } {}        */
 
 
         //create getters/setters
@@ -31,7 +32,9 @@ namespace winrt::stockproj::implementation
         void Close(hstring const& val) { m_close = val; }
 
         static size_t WriteCallback(void* contents, size_t size, size_t nmemb, std::string* output);
-        static void fetch_stock_quote(const std::string& ticker);
+        static void fetch_stock_quote(const string& ticker, const string& interval, const string& days);
+        static hstring OutputJsonField(const std::string& label, const std::string& value);
+       
 
        
 

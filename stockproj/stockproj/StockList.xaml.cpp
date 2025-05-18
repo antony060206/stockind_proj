@@ -46,4 +46,6 @@ namespace winrt::stockproj::implementation
 		m_items = value;
 	}
 
+	
+
 }

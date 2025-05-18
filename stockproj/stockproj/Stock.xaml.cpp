@@ -27,7 +27,7 @@ using namespace std;
 
 namespace winrt::stockproj::implementation
 {
-    hstring OutputJsonField(const std::string& label, const std::string& value) { //converts json to wstring
+    hstring Stock::OutputJsonField(const std::string& label, const std::string& value) { //converts json to wstring
         std::wstring wlabel(label.begin(), label.end());
         std::wstring wvalue(value.begin(), value.end());
         std::wstring message = wlabel + L": " + wvalue + L"\n";
@@ -41,26 +41,31 @@ namespace winrt::stockproj::implementation
         return totalSize;
     }
 
-    void Stock::fetch_stock_quote(const string& ticker) {
+    void Stock::fetch_stock_quote(const string& ticker, const string& interval, const string& output) {
         CURL* curl = curl_easy_init();
         if (curl) {
             string readBuffer;
             string apiKey = "35d57fadcdc94333a8eff11a9d0077e1";
-            string url = "https://api.twelvedata.com/time_series?symbol=" + ticker + "&interval=1day&outputsize=5&apikey=" + apiKey;
+            if (interval.empty() || output.empty()) {
+                string url = "https://api.twelvedata.com/time_series?symbol=" + ticker + "&interval=1day&outputsize=5&apikey=" + apiKey;
+                curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
+            }
+            else {
+                string url = "https://api.twelvedata.com/time_series?symbol=" + ticker + "&interval=" + interval + "&outputsize=" + output + "&apikey=" + apiKey;
+                curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
 
-            curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
+            }
+            
             curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
             curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
 
             CURLcode res = curl_easy_perform(curl);
 
-            
-
             if (res == CURLE_OK) {
 
                 try {
                     if (g_stockList == nullptr) return; // creates the list and the consructor builds it
-                    winrt::stockproj::Stock stock; // creates the list
+                
                     //list.buildlist();
 
                     auto j = json::parse(readBuffer);
@@ -68,12 +73,15 @@ namespace winrt::stockproj::implementation
 
                     auto values = j["values"];
                     for (const auto& entry : values) {
+                        winrt::stockproj::Stock stock;// creates the stock obj
                          stock.Ticker(OutputJsonField("Ticker:", j["meta"]["symbol"].get<std::string>()));
                          stock.Time(OutputJsonField("Time:", entry["datetime"].get<std::string>()));
                          stock.Open(OutputJsonField("Open:", entry["open"].get<std::string>()));
                          stock.High(OutputJsonField("High:", entry["high"].get<std::string>()));
                          stock.Low(OutputJsonField("Low:", entry["low"].get<std::string>()));
                          stock.Close(OutputJsonField("Close:", entry["close"].get<std::string>()));
+
+                         //OutputDebugStringW((stock.Time()).c_str());
 
                          g_stockList.appendlist(stock);
                     }

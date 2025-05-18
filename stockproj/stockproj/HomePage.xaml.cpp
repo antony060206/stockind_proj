@@ -8,8 +8,11 @@
 #include <winrt/Windows.UI.Xaml.Input.h>
 #include "NavigationService.h"
 #include "winrt/Windows.UI.Xaml.Interop.h"
-#include "StockList.xaml.h"
+//#include "StockList.xaml.h"
+//#include "Indicator.xaml.h"
 #include "Stock.xaml.h"
+#include "Rsi.xaml.h"
+#include "Macd.xaml.h"
 
 
 using namespace winrt;
@@ -22,8 +25,19 @@ namespace winrt::stockproj::implementation
 		NavigationService::Navigate(xaml_typename<winrt::stockproj::StockList>());
 		DispatcherQueue().TryEnqueue([this] {
 			auto tickerStr = to_string(ticker().Text());
-			Stock::fetch_stock_quote(tickerStr);
+			auto intervalStr = to_string(Interval().Text());
+			auto daysStr = to_string(Output().Text());
+			Stock::fetch_stock_quote(tickerStr, intervalStr, daysStr);
 			});
 
+	}
+
+	void HomePage::indicator_search(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e) {
+		NavigationService::Navigate(xaml_typename<winrt::stockproj::Indicator>());
+		auto tickerStr = to_string(ticker().Text());
+		Macd::fetch_macd(tickerStr);
+		Rsi::fetch_rsi(tickerStr);
+
+		
 	}
 }
